@@ -29,7 +29,8 @@ const rooms = {};
 
 io.on("connection", (socket) => {
 
-  console.log("A User Has joined with id", socket.id);
+  // console.log("A User Has joined with id", socket.id);
+
   // Join room event
   socket.on("join room", (roomID) => {
     // Add user to room
@@ -65,7 +66,7 @@ io.on("connection", (socket) => {
 
   // Handle chat messages
   socket.on("chat", ({ text, to }) => {
-    console.log(`Message is: ${text} and To is : ${to}`);
+    // console.log(`Message is: ${text} and To is : ${to}`);
     io.to(to).emit("recieveChat", { text });
   });
 
