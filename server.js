@@ -28,14 +28,21 @@ const io = socket(server, {
 const rooms = {};
 
 io.on("connection", (socket) => {
-
   // console.log("A User Has joined with id", socket.id);
 
   // Join room event
   socket.on("join room", (roomID) => {
     // Add user to room
     if (rooms[roomID]) {
-      rooms[roomID].push(socket.id);
+      if (rooms[roomID].length >= 2) {
+        socket.emit("room full", {
+          message: "Please try another room.",
+        });
+        // console.log("Room is Full");
+        return;
+      } else {
+        rooms[roomID].push(socket.id);
+      }
     } else {
       rooms[roomID] = [socket.id];
     }
@@ -88,8 +95,6 @@ io.on("connection", (socket) => {
     }
   });
 });
-
-
 
 const PORT = process.env.PORT || 7000;
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
