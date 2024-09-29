@@ -57,7 +57,10 @@ io.on("connection", (socket) => {
     // Attach room ID to socket for tracking
     socket.roomID = roomID;
   });
-
+  socket.on("getPeerId", ({ to, peerId }) => {
+    console.log(`this peer id ${peerId} will send to ${to}`);
+    io.to(to).emit("takePeerId", peerId);
+  });
   // Handle WebRTC offer/answer/ICE-candidate events
   socket.on("offer", (payload) => {
     io.to(payload.target).emit("offer", payload);
