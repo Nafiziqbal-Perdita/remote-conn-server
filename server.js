@@ -19,7 +19,8 @@ app.use(
 const io = socket(server, {
   cors: {
     // origin: "http://localhost:3000", // Your client URL
-    origin: "http://localhost:5173/", // Your client URL
+    // origin: "http://localhost:5173/", // Your client URL
+    origin: "*", //allow all
     methods: ["GET", "POST"],
     credentials: true,
   },
