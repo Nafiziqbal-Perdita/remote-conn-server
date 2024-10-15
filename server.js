@@ -81,6 +81,21 @@ io.on("connection", (socket) => {
     io.to(to).emit("recieveChat", { text });
   });
 
+//get the position of mouseMove
+socket.on("mouseMove",({pos})=>{
+
+  pos['from']=socket.id;
+    console.log(pos);
+  io.to(pos.to).emit("onMouseMove",pos)
+})
+
+
+
+
+
+
+
+
   // Handle user disconnect
   socket.on("disconnect", () => {
     const roomID = socket.roomID;
