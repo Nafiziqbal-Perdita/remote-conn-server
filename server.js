@@ -85,7 +85,7 @@ io.on("connection", (socket) => {
 socket.on("mouseMove",({pos})=>{
 
   pos['from']=socket.id;
-    console.log(pos);
+    // console.log(pos);
   io.to(pos.to).emit("onMouseMove",pos)
 });
 
@@ -99,6 +99,11 @@ socket.on("mouseClick",(data)=>{
 socket.on("keyPress",(key)=>{
   console.log(key);
   io.to(key.to).emit("keyPress",key)
+})
+//scrool not working it is deprecated
+socket.on("mouseScroll",(scrollData )=>{
+  console.log(scrollData);
+  // io.to(key.to).emit("keyPress",key)
 })
 
 
