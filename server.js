@@ -10,7 +10,8 @@ const server = http.createServer(app);
 app.use(
   cors({
     // origin: "http://localhost:3000", // Your frontend URL
-    origin: "http://localhost:5173/", // Your frontend URL
+    // origin: "http://localhost:5173/", // Your frontend URL
+    origin: "*", // Your frontend URL
     methods: ["GET", "POST"],
     credentials: true, // Allow cookies and credentials
   })
